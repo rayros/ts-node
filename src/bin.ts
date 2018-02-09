@@ -5,7 +5,7 @@ import { join } from 'path'
 import v8flags = require('v8flags')
 
 const argv = process.argv.slice(2)
-const signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGWINCH']
+const signals: NodeJS.Signals[] = process.platform === 'win32' ? ['SIGINT', 'SIGTERM'] : ['SIGINT', 'SIGTERM', 'SIGWINCH']
 
 v8flags(function (err, v8flags) {
   if (err) {
